@@ -1,0 +1,2 @@
+C:/Users/ADHIL/OneDrive/Desktop/Lumi.technoHub/task_4_myTravelPartner/my_travel_partner/android/app/.cxx/RelWithDebInfo/684r1s4b/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/ADHIL/OneDrive/Desktop/Lumi.technoHub/task_4_myTravelPartner/my_travel_partner/android/app/.cxx/RelWithDebInfo/684r1s4b/arm64-v8a/CMakeFiles/rebuild_cache.dir

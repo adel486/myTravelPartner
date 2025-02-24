@@ -19,9 +19,7 @@ class GroupScreen extends StatelessWidget {
 }
 
 class _myGroupCard extends StatelessWidget {
-  const _myGroupCard({
-    super.key,
-  });
+  const _myGroupCard({super.key});
 
   @override
   Widget build(BuildContext context) {
