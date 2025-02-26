@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:my_travel_partner/view/dummyDb.dart';
 
 class PlanMyTripScreen extends StatefulWidget {
   const PlanMyTripScreen({super.key});
@@ -19,8 +20,8 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
   XFile? selectedImage;
 
   // Controllers
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController locationController = TextEditingController();
+  final TextEditingController tripNameController = TextEditingController();
+  final TextEditingController placeNameController = TextEditingController();
   final TextEditingController desController = TextEditingController();
   final TextEditingController groupSizeController = TextEditingController();
   final TextEditingController budgetController = TextEditingController();
@@ -69,8 +70,8 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              _buildTextField(nameController, "Enter trip name"),
-              _buildTextField(locationController, "Enter location"),
+              _buildTextField(tripNameController, "Enter trip name"),
+              _buildTextField(placeNameController, "Enter location"),
               _buildTextField(desController, "Trip description", maxLines: 6),
               _buildDropdown(),
               _buildTextField(groupSizeController, "Preferred group size",
@@ -217,7 +218,13 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
         minimumSize: const Size(double.infinity, 50),
       ),
       onPressed: () {
-        // Handle submission logic here
+        Dummydb.groupList.add({
+          "tripName": tripNameController.text,
+          "placeName": placeNameController.text,
+          "date": dateController.text
+        });
+        Navigator.pop(context);
+        setState(() {});
       },
       child: Text("Submit",
           style: GoogleFonts.roboto(

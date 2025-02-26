@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_travel_partner/view/dummyDb.dart';
 
 class upComingTripCard extends StatelessWidget {
   const upComingTripCard({
@@ -64,16 +65,28 @@ class upComingTripCard extends StatelessWidget {
                       style: TextStyle(color: Colors.black, fontSize: 18),
                     ),
                     SizedBox(width: 80),
-                    Container(
-                      alignment: Alignment.center,
-                      height: 30,
-                      width: 80,
-                      decoration: BoxDecoration(
-                          color: Colors.red.withOpacity(0.6),
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Text(
-                        "Join",
-                        style: TextStyle(color: Colors.black, fontSize: 18),
+                    InkWell(
+                      onTap: () {
+                        Dummydb.UpcomingTripList.add({
+                          "imageUrl": "$imageUrl",
+                          "tripName": "$tripName",
+                          "date": "$date",
+                          "seats": "$seats"
+                        });
+
+                        print("list Added");
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 30,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            color: Colors.red.shade100,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Text(
+                          "Join",
+                          style: TextStyle(color: Colors.black, fontSize: 18),
+                        ),
                       ),
                     )
                   ],

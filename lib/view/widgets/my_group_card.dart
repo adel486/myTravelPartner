@@ -3,76 +3,73 @@ import 'package:flutter/material.dart';
 class myGroupCard extends StatelessWidget {
   const myGroupCard({
     super.key,
+    required this.placeName,
+    required this.tripName,
+    required this.date,
   });
+  final String tripName;
+  final String placeName;
+  final String date;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(15),
-        color: Colors.white,
-      ),
-      child: Row(
+          border: Border.all(color: Colors.grey.shade400),
+          borderRadius: BorderRadius.circular(15),
+          color: Color(0xffffffff)),
+      child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                        "https://images.pexels.com/photos/709552/pexels-photo-709552.jpeg?auto=compress&cs=tinysrgb&w=600",
-                      )),
-                  borderRadius: BorderRadius.circular(15),
-                  color: const Color.fromARGB(255, 255, 255, 255)),
-            ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
             children: [
-              Row(
+              Container(
+                height: 120,
+                width: 120,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(
+                            "https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?auto=compress&cs=tinysrgb&w=600")),
+                    color: Colors.amber),
+              ),
+              SizedBox(width: 15),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Place :",
-                    style: TextStyle(fontSize: 18, color: Colors.black),
+                    tripName,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(width: 65),
+                  SizedBox(height: 5),
                   Text(
-                    "Date :",
-                    style: TextStyle(fontSize: 18, color: Colors.black),
+                    "Place : $placeName",
+                    style: TextStyle(color: Colors.black, fontSize: 18),
                   ),
-                ],
-              ),
-              Text(
-                "People :",
-                style: TextStyle(fontSize: 18, color: Colors.black),
-              ),
-              Row(
-                children: [
+                  SizedBox(height: 5),
                   Text(
-                    "slots :",
-                    style: TextStyle(fontSize: 18, color: Colors.black),
+                    "date : $date",
+                    style: TextStyle(color: Colors.black, fontSize: 18),
                   ),
-                  SizedBox(
-                    width: 90,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.red),
-                    child: Text(
-                      "Chat Now",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  )
+                  SizedBox(height: 5),
                 ],
-              ),
+              )
             ],
+          ),
+          SizedBox(height: 15),
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15), color: Colors.blue),
+            child: Text(
+              "Chat now",
+              style: TextStyle(color: Colors.black, fontSize: 20),
+            ),
           )
         ],
       ),

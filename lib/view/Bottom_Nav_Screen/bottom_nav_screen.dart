@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_travel_partner/view/My_trip_screen/my_trip_screen.dart';
 import 'package:my_travel_partner/view/group_screen/group_screen.dart';
 import 'package:my_travel_partner/view/home_screen/home_screen.dart';
-import 'package:my_travel_partner/view/plan_my_trip_screen/plan_my_trip_screen.dart';
 import 'package:my_travel_partner/view/sos_screen/sos_screen.dart';
 
 class BottomNavScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     HomeScreen(),
     GroupScreen(),
     SosScreen(),
-    PlanMyTripScreen()
+    MyTripScreen()
   ];
   @override
   Widget build(BuildContext context) {

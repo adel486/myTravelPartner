@@ -4,8 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:my_travel_partner/view/dummyDb.dart';
 import 'package:my_travel_partner/view/widgets/upComingTripCard.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  // List<Map<String, String>> joinedTrips = [];
+  // void joinTrips(Map<String, String> trip) {
+  //   setState(() {
+  //     if (joinedTrips.contains(trip)) {
+  //       joinedTrips.add(trip);
+  //     }
+  //   });
+  //   ScaffoldMessenger.of(context)
+  //       .showSnackBar(SnackBar(content: Text("Joined $trip['tripName']")));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -17,66 +33,74 @@ class HomeScreen extends StatelessWidget {
         title: Text(
           "Home",
           style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24),
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              child: AspectRatio(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Carousel Slider
+              AspectRatio(
                 aspectRatio: 7 / 5,
                 child: CarouselSlider(
-                    items: List.generate(
-                        Dummydb.carouselImages.length,
-                        (index) => Container(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: CachedNetworkImage(
-                                  imageUrl: Dummydb.carouselImages[index],
-                                  placeholder: (context, url) => Center(
-                                    child: CircularProgressIndicator(),
-                                  ),
-                                  errorListener: (value) {
-                                    print("image loading failed");
-                                    print(value);
-                                  },
-                                  errorWidget: (context, url, error) =>
-                                      SizedBox(),
-                                ),
-                              ),
-                            )),
-                    options: CarouselOptions(
-                        height: 200,
-                        autoPlay: false,
-                        enlargeCenterPage: true,
-                        aspectRatio: 7 / 2,
-                        viewportFraction: 0.9)),
+                  items: List.generate(
+                    Dummydb.carouselImages.length,
+                    (index) => ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: CachedNetworkImage(
+                        imageUrl: Dummydb.carouselImages[index],
+                        placeholder: (context, url) => Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                        errorWidget: (context, url, error) => SizedBox(),
+                      ),
+                    ),
+                  ),
+                  options: CarouselOptions(
+                    height: 250,
+                    autoPlay: false,
+                    enlargeCenterPage: true,
+                    viewportFraction: 0.9,
+                  ),
+                ),
               ),
-            ),
-            Text(
-              "Upcoming trips",
-              style: TextStyle(
+
+              SizedBox(height: 10),
+
+              // Upcoming Trips Title
+              Text(
+                "Upcoming trips",
+                style: TextStyle(
                   color: Colors.black,
                   fontSize: 24,
-                  fontWeight: FontWeight.bold),
-            ),
-            Expanded(
-              child: SizedBox(
-                child: ListView.separated(
-                    itemBuilder: (context, index) => upComingTripCard(
-                          tripName: "Munnar",
-                          seats: "5",
-                          date: "15-10-2025",
-                          imageUrl: Dummydb.carouselImages[index],
-                        ),
-                    separatorBuilder: (context, index) => SizedBox(height: 5),
-                    itemCount: Dummydb.carouselImages.length),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            )
-          ],
+
+              SizedBox(height: 10),
+
+              // Upcoming Trips List
+              ListView.separated(
+                shrinkWrap: true, // Makes ListView take only needed space
+                physics:
+                    NeverScrollableScrollPhysics(), // Disables ListView's own scrolling
+                itemBuilder: (context, index) => upComingTripCard(
+                  tripName: Dummydb.tripDetails[index]['Trip name'],
+                  seats: Dummydb.tripDetails[index]['seats'].toString(),
+                  date: Dummydb.tripDetails[index]['date'],
+                  imageUrl: Dummydb.tripDetails[index]['imageUrl'],
+                ),
+                separatorBuilder: (context, index) => SizedBox(height: 5),
+                itemCount: Dummydb.carouselImages.length,
+              ),
+            ],
+          ),
         ),
       ),
     );
