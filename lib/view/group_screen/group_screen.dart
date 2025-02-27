@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_travel_partner/view/dummyDb.dart';
-import 'package:my_travel_partner/view/widgets/upComingTripCard.dart';
+import 'package:my_travel_partner/view/widgets/my_group_card.dart';
 
 class GroupScreen extends StatelessWidget {
   GroupScreen({super.key}); // Remove required keyword
@@ -14,13 +14,12 @@ class GroupScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
-        // ignore: unnecessary_null_comparison
         child: ListView.separated(
-            itemBuilder: (context, index) => upComingTripCard(
-                imageUrl: Dummydb.UpcomingTripList[index]['imageUrl'],
-                tripName: Dummydb.UpcomingTripList[index]['tripName'],
-                seats: Dummydb.UpcomingTripList[index]['seats'],
-                date: Dummydb.UpcomingTripList[index]['date']),
+            itemBuilder: (context, index) => myGroupCard(
+                  imageUrl: Dummydb.UpcomingTripList[index]['imageUrl'],
+                  tripName: Dummydb.UpcomingTripList[index]['tripName'],
+                  date: Dummydb.UpcomingTripList[index]['date'],
+                ),
             separatorBuilder: (context, index) => SizedBox(
                   height: 5,
                 ),

@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:my_travel_partner/view/dummyDb.dart';
+import 'package:my_travel_partner/controller/my_trip_screen_controller.dart';
+import 'package:provider/provider.dart';
 
 class PlanMyTripScreen extends StatefulWidget {
   const PlanMyTripScreen({super.key});
@@ -197,7 +198,7 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Colors.red.withOpacity(0.2),
+            color: Colors.red.shade200,
           ),
           child: Center(
             child: selectedImage != null
@@ -211,6 +212,8 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
   }
 
   Widget _buildSubmitButton() {
+    final tripProvider =
+        Provider.of<MyTripScreenController>(context, listen: false);
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.red,
@@ -218,13 +221,9 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
         minimumSize: const Size(double.infinity, 50),
       ),
       onPressed: () {
-        Dummydb.groupList.add({
-          "tripName": tripNameController.text,
-          "placeName": placeNameController.text,
-          "date": dateController.text
-        });
+        tripProvider.addMyTrip(placeNameController.text,
+            tripNameController.text, dateController.text);
         Navigator.pop(context);
-        setState(() {});
       },
       child: Text("Submit",
           style: GoogleFonts.roboto(

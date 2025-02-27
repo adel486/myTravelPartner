@@ -12,17 +12,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // List<Map<String, String>> joinedTrips = [];
-  // void joinTrips(Map<String, String> trip) {
-  //   setState(() {
-  //     if (joinedTrips.contains(trip)) {
-  //       joinedTrips.add(trip);
-  //     }
-  //   });
-  //   ScaffoldMessenger.of(context)
-  //       .showSnackBar(SnackBar(content: Text("Joined $trip['tripName']")));
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,14 +35,18 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Carousel Slider
-              AspectRatio(
-                aspectRatio: 7 / 5,
-                child: CarouselSlider(
-                  items: List.generate(
-                    Dummydb.carouselImages.length,
-                    (index) => ClipRRect(
+              CarouselSlider(
+                items: List.generate(
+                  Dummydb.carouselImages.length,
+                  (index) => Container(
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                    clipBehavior: Clip.antiAlias,
+                    child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        width: double.infinity,
                         imageUrl: Dummydb.carouselImages[index],
                         placeholder: (context, url) => Center(
                           child: CircularProgressIndicator(),
@@ -62,12 +55,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  options: CarouselOptions(
-                    height: 250,
-                    autoPlay: false,
-                    enlargeCenterPage: true,
-                    viewportFraction: 0.9,
-                  ),
+                ),
+                options: CarouselOptions(
+                  height: 220,
+                  autoPlay: true,
+                  enlargeCenterPage: true,
+                  viewportFraction: 0.9,
                 ),
               ),
 
@@ -86,7 +79,14 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 10),
 
               // Upcoming Trips List
-              ListView.separated(
+              GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    mainAxisExtent: 320),
+
+                scrollDirection: Axis.vertical,
                 shrinkWrap: true, // Makes ListView take only needed space
                 physics:
                     NeverScrollableScrollPhysics(), // Disables ListView's own scrolling
@@ -96,8 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   date: Dummydb.tripDetails[index]['date'],
                   imageUrl: Dummydb.tripDetails[index]['imageUrl'],
                 ),
-                separatorBuilder: (context, index) => SizedBox(height: 5),
-                itemCount: Dummydb.carouselImages.length,
+
+                itemCount: Dummydb.tripDetails.length,
               ),
             ],
           ),
