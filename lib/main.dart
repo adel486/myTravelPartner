@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_travel_partner/controller/group_screen_controller.dart';
 import 'package:my_travel_partner/controller/home_screen_controller.dart';
 import 'package:my_travel_partner/controller/my_trip_screen_controller.dart';
-import 'package:my_travel_partner/view/Bottom_Nav_Screen/bottom_nav_screen.dart';
+import 'package:my_travel_partner/view/login_screen/login_screen.dart';
 import 'package:provider/provider.dart';
 
 void main(List<String> args) {
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: BottomNavScreen(),
+        home: LoginScreen(),
       ),
     );
   }

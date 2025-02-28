@@ -71,20 +71,18 @@ class upComingTripCard extends StatelessWidget {
                         seats: seats,
                         date: date);
                   },
-                  child: Expanded(
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 45,
-                      width: 200,
-                      decoration: BoxDecoration(
-                          color: isJoined
-                              ? Colors.greenAccent.shade200
-                              : Colors.redAccent,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Text(
-                        isJoined ? "joined" : "Join",
-                        style: TextStyle(color: Colors.black, fontSize: 18),
-                      ),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 45,
+                    width: 200,
+                    decoration: BoxDecoration(
+                        color: isJoined
+                            ? Colors.greenAccent.shade200
+                            : Colors.redAccent,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Text(
+                      isJoined ? "joined" : "Join",
+                      style: TextStyle(color: Colors.black, fontSize: 18),
                     ),
                   ),
                 ),

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_travel_partner/view/My_trip_screen/my_trip_screen.dart';
+import 'package:my_travel_partner/view/group_screen/group_screen.dart';
 import 'package:my_travel_partner/view/profile_screen/widgets/formFieldWidget.dart';
 import 'package:my_travel_partner/view/profile_screen/widgets/idProof.dart';
 import 'package:my_travel_partner/view/profile_screen/widgets/textWidget.dart';
 import 'package:my_travel_partner/view/Global_Widgets/dropDownWidget.dart';
 
-class Profile2 extends StatelessWidget {
-  Profile2({super.key});
+class ProfileScreen extends StatelessWidget {
+  ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -160,9 +162,23 @@ class Profile2 extends StatelessWidget {
                   style: GoogleFonts.poppins(
                       fontSize: 18, fontWeight: FontWeight.bold)),
               SizedBox(height: 8),
-              buildCard('My Trips'),
-              buildCard('My groups'),
-              buildCard('Safety')
+              buildCard('My Trips', () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyTripScreen(),
+                    ));
+              }),
+              buildCard('My groups', () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => GroupScreen(),
+                    ));
+              }),
+              buildCard('Safety', () {
+                // Navigate to safty screen
+              })
             ],
           ),
         ),
@@ -170,14 +186,14 @@ class Profile2 extends StatelessWidget {
     );
   }
 
-  Widget buildCard(String title) {
+  Widget buildCard(String title, VoidCallback ontap) {
     return Card(
       elevation: 4,
       color: Colors.red[50],
       child: ListTile(
         title: Text(title,
             style: GoogleFonts.roboto(fontSize: 16, color: Colors.black)),
-        onTap: () {},
+        onTap: ontap,
       ),
     );
   }

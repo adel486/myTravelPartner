@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_travel_partner/view/Bottom_Nav_Screen/bottom_nav_screen.dart';
 import 'package:my_travel_partner/view/sign_up_screen/sign_up_screen.dart';
 
 import 'package:page_transition/page_transition.dart';
@@ -52,6 +53,8 @@ class _LoginCardState extends State<_LoginCard> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Login Successful!')),
       );
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => BottomNavScreen()));
     }
   }
 
