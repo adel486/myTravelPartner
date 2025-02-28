@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytravellapp/screen/profile_page/widgets/formfieldwidget.dart';
-import 'package:mytravellapp/screen/profile_page/widgets/idproof.dart';
-import 'package:mytravellapp/screen/profile_page/widgets/textwidget.dart';
-import 'package:mytravellapp/screen/report_screen/widgets/dropdown.dart';
+import 'package:my_travel_partner/view/profile_screen/widgets/formFieldWidget.dart';
+import 'package:my_travel_partner/view/profile_screen/widgets/textWidget.dart';
 
 class Profile2 extends StatelessWidget {
   Profile2({super.key});
@@ -59,22 +57,27 @@ class Profile2 extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Textwidget(name: 'My Budget'),
                         SizedBox(height: 5),
-                        Formfieldwidget(textInputType: TextInputType.number, hintname:'In Rupees')
+                        Formfieldwidget(
+                            textInputType: TextInputType.number,
+                            hintname: 'In Rupees')
                       ],
                     ),
                   ),
                   SizedBox(width: 5),
-                  
                   Expanded(
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Textwidget(name: 'Preferred group size'),
                         SizedBox(height: 5),
-                        Formfieldwidget(textInputType: TextInputType.number, hintname:'Group size')
+                        Formfieldwidget(
+                            textInputType: TextInputType.number,
+                            hintname: 'Group size')
                       ],
                     ),
                   ),
@@ -89,8 +92,8 @@ class Profile2 extends StatelessWidget {
                         Textwidget(name: 'Travel type'),
                         SizedBox(height: 5),
                         DropdownWidget(
-                                                    items: ['Car', 'Bike', 'AirBus', 'Train', 'Airways'],
-                                                  ),
+                          items: ['Car', 'Bike', 'AirBus', 'Train', 'Airways'],
+                        ),
                       ],
                     ),
                   ),
@@ -101,27 +104,30 @@ class Profile2 extends StatelessWidget {
                         Textwidget(name: 'Language'),
                         SizedBox(height: 5),
                         DropdownWidget(
-                                                    items: [
-                        'English',
-                        'Malayalam',
-                        'Tamil',
-                        'Kannada',
-                        'Telugu',
-                        'Others'
-                                                    ],
-                                                  ),
+                          items: [
+                            'English',
+                            'Malayalam',
+                            'Tamil',
+                            'Kannada',
+                            'Telugu',
+                            'Others'
+                          ],
+                        ),
                       ],
                     ),
                   ),
                 ],
               ),
               SizedBox(height: 10),
-              Align(alignment: Alignment.center,
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+              Align(
+                alignment: Alignment.center,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Textwidget(name: 'Available date'),
                     SizedBox(height: 5),
-                    Formfieldwidget(textInputType: TextInputType.datetime, hintname:'Date')
+                    Formfieldwidget(
+                        textInputType: TextInputType.datetime, hintname: 'Date')
                   ],
                 ),
               ),
@@ -132,21 +138,25 @@ class Profile2 extends StatelessWidget {
               SizedBox(height: 5),
               Center(
                 child: ElevatedButton(
-                  onPressed: () {
-
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
-                    padding: EdgeInsets.symmetric(vertical: 10,horizontal: 60),
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 60),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  child: Text('Update', style: GoogleFonts.roboto(fontSize: 16, color: Colors.white,textStyle: Theme.of(context).textTheme.labelSmall)),
+                  child: Text('Update',
+                      style: GoogleFonts.roboto(
+                          fontSize: 16,
+                          color: Colors.white,
+                          textStyle: Theme.of(context).textTheme.labelSmall)),
                 ),
               ),
               Divider(height: 40),
-              Text('Uploaded Travel Plans', style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold)),
+              Text('Uploaded Travel Plans',
+                  style: GoogleFonts.poppins(
+                      fontSize: 18, fontWeight: FontWeight.bold)),
               SizedBox(height: 8),
               buildCard('My Trips'),
               buildCard('My groups'),
@@ -163,10 +173,9 @@ class Profile2 extends StatelessWidget {
       elevation: 4,
       color: Colors.red[50],
       child: ListTile(
-        title: Text(title, style: GoogleFonts.roboto(fontSize: 16, color: Colors.black)),
-        onTap: () {
-
-        },
+        title: Text(title,
+            style: GoogleFonts.roboto(fontSize: 16, color: Colors.black)),
+        onTap: () {},
       ),
     );
   }
