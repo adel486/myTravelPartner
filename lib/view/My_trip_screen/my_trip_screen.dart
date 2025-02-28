@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_travel_partner/controller/my_trip_screen_controller.dart';
+import 'package:my_travel_partner/view/My_trip_screen/widgets/my_trip_card.dart';
 import 'package:my_travel_partner/view/dummyDb.dart';
 import 'package:my_travel_partner/view/plan_my_trip_screen/plan_my_trip_screen.dart';
-import 'package:my_travel_partner/view/widgets/my_trip_card.dart';
+
 import 'package:provider/provider.dart';
 
 class MyTripScreen extends StatefulWidget {

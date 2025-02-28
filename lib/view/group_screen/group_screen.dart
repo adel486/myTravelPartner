@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_travel_partner/view/dummyDb.dart';
-import 'package:my_travel_partner/view/widgets/my_group_card.dart';
+import 'package:my_travel_partner/view/group_screen/widgets/my_group_card.dart';
 
 class GroupScreen extends StatelessWidget {
   GroupScreen({super.key}); // Remove required keyword

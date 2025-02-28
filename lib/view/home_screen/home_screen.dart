@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:my_travel_partner/view/dummyDb.dart';
-import 'package:my_travel_partner/view/widgets/upComingTripCard.dart';
+import 'package:my_travel_partner/view/home_screen/widgets/up_coming_trip_Card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
