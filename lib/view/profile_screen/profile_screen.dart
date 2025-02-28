@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_travel_partner/view/profile_screen/widgets/formFieldWidget.dart';
+import 'package:my_travel_partner/view/profile_screen/widgets/idProof.dart';
 import 'package:my_travel_partner/view/profile_screen/widgets/textWidget.dart';
+import 'package:my_travel_partner/view/widgets/dropDownWidget.dart';
 
 class Profile2 extends StatelessWidget {
   Profile2({super.key});
