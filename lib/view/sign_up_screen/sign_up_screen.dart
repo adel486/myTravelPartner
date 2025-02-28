@@ -1,19 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-<<<<<<< HEAD
 import 'package:my_travel_partner/view/login_screen/login_screen.dart';
 
 import 'package:page_transition/page_transition.dart';
 
 class SignUpScreen extends StatelessWidget {
-=======
-import 'package:mytravellapp/screen/login_screen/login_screen.dart';
-import 'package:page_transition/page_transition.dart';
-
-
-class SigninPage extends StatelessWidget {
->>>>>>> b01acdee33828a175146cc2249506f9b305fc6dc
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,10 +53,6 @@ class SigninCardState extends State<SigninCard> {
         isLoading = false;
       });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> b01acdee33828a175146cc2249506f9b305fc6dc
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Login Successful!')),
       );
@@ -152,12 +140,8 @@ class SigninCardState extends State<SigninCard> {
                     fillColor: Colors.white.withValues(alpha: 0.3),
                     hintText: 'Phone Number',
                     hintStyle: TextStyle(color: Colors.white70),
-<<<<<<< HEAD
                     prefixIcon:
                         Icon(Icons.contacts_outlined, color: Colors.white70),
-=======
-                    prefixIcon: Icon(Icons.contacts_outlined, color: Colors.white70),
->>>>>>> b01acdee33828a175146cc2249506f9b305fc6dc
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide.none,
@@ -227,7 +211,6 @@ class SigninCardState extends State<SigninCard> {
                 isLoading
                     ? CircularProgressIndicator(color: Colors.white)
                     : ElevatedButton(
-<<<<<<< HEAD
                         onPressed: login,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white.withValues(alpha: 0.3),
@@ -248,24 +231,6 @@ class SigninCardState extends State<SigninCard> {
                       style:
                           GoogleFonts.roboto(fontSize: 15, color: Colors.white),
                     ),
-=======
-                  onPressed: login,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white.withValues(alpha: 0.3),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: Text(
-                    'Register',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-                SizedBox(height: 20),
-                Row(
-                  children: [
-                    Text('Already have an account?',style:GoogleFonts.roboto(fontSize: 15,color: Colors.white),),
->>>>>>> b01acdee33828a175146cc2249506f9b305fc6dc
                     SizedBox(width: 5),
                     TextButton(
                       onPressed: () {
@@ -273,11 +238,7 @@ class SigninCardState extends State<SigninCard> {
                             context,
                             PageTransition(
                                 type: PageTransitionType.rightToLeft,
-<<<<<<< HEAD
                                 childBuilder: (context) => LoginScreen()));
-=======
-                                childBuilder: (context) => LoginPage()));
->>>>>>> b01acdee33828a175146cc2249506f9b305fc6dc
                       },
                       child: Text(
                         'Sign Up',

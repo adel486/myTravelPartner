@@ -1,7 +1,5 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-<<<<<<< HEAD
 import 'package:my_travel_partner/view/login_screen/login_screen.dart';
 import 'package:my_travel_partner/view/sign_up_screen/sign_up_screen.dart';
 
@@ -13,19 +11,6 @@ class Startscreen extends StatefulWidget {
 }
 
 class _StartscreenState extends State<Startscreen> {
-=======
-import 'package:mytravellapp/screen/login_screen/login_screen.dart';
-import 'package:mytravellapp/screen/signin_screen/signin_screen.dart';
-import 'package:page_transition/page_transition.dart';
-
-class Startscreen extends StatefulWidget {
-  @override
-  State<Startscreen> createState() => _StartscreenState();
-}
-
-class _StartscreenState extends State<Startscreen>
-    {
->>>>>>> b01acdee33828a175146cc2249506f9b305fc6dc
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -61,11 +46,7 @@ class _StartscreenState extends State<Startscreen>
                       context,
                       PageTransition(
                           type: PageTransitionType.leftToRight,
-<<<<<<< HEAD
                           childBuilder: (context) => LoginScreen()));
-=======
-                          childBuilder: (context) => LoginPage()));
->>>>>>> b01acdee33828a175146cc2249506f9b305fc6dc
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black.withValues(alpha: 0.2),
@@ -89,11 +70,7 @@ class _StartscreenState extends State<Startscreen>
                       context,
                       PageTransition(
                           type: PageTransitionType.leftToRight,
-<<<<<<< HEAD
                           childBuilder: (context) => SignUpScreen()));
-=======
-                          childBuilder: (context) => SigninPage()));
->>>>>>> b01acdee33828a175146cc2249506f9b305fc6dc
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black.withValues(alpha: 0.2),
