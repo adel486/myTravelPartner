@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_travel_partner/utils/constants/color_constants.dart';
 
 class myTripCard extends StatelessWidget {
   const myTripCard({
@@ -16,9 +17,9 @@ class myTripCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
       decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey.shade400),
+          border: Border.all(color: ColorConstants.borderGrey),
           borderRadius: BorderRadius.circular(15),
-          color: Color(0xffffffff)),
+          color: ColorConstants.mainwhite),
       child: Column(
         children: [
           Row(
@@ -32,7 +33,7 @@ class myTripCard extends StatelessWidget {
                         fit: BoxFit.cover,
                         image: NetworkImage(
                             "https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?auto=compress&cs=tinysrgb&w=600")),
-                    color: Colors.amber),
+                    color: ColorConstants.mainwhite),
               ),
               SizedBox(width: 15),
               Column(
@@ -48,12 +49,14 @@ class myTripCard extends StatelessWidget {
                   SizedBox(height: 5),
                   Text(
                     "Place : $placeName",
-                    style: TextStyle(color: Colors.black, fontSize: 18),
+                    style: TextStyle(
+                        color: ColorConstants.mainblack, fontSize: 18),
                   ),
                   SizedBox(height: 5),
                   Text(
                     "date : $date",
-                    style: TextStyle(color: Colors.black, fontSize: 18),
+                    style: TextStyle(
+                        color: ColorConstants.mainblack, fontSize: 18),
                   ),
                   SizedBox(height: 5),
                 ],
@@ -65,10 +68,11 @@ class myTripCard extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 10),
             alignment: Alignment.center,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15), color: Colors.blue),
+                borderRadius: BorderRadius.circular(15),
+                color: ColorConstants.blue),
             child: Text(
               "Chat now",
-              style: TextStyle(color: Colors.black, fontSize: 20),
+              style: TextStyle(color: ColorConstants.mainblack, fontSize: 20),
             ),
           )
         ],

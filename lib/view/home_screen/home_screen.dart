@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:my_travel_partner/utils/constants/color_constants.dart';
 import 'package:my_travel_partner/view/dummyDb.dart';
 import 'package:my_travel_partner/view/home_screen/widgets/up_coming_trip_Card.dart';
 
@@ -15,14 +16,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorConstants.mainwhite,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: ColorConstants.primaryRed,
         centerTitle: true,
         title: Text(
           "Home",
           style: TextStyle(
-            color: Colors.black,
+            color: ColorConstants.mainblack,
             fontWeight: FontWeight.bold,
             fontSize: 24,
           ),
@@ -70,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Text(
                 "Upcoming trips",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: ColorConstants.mainblack,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),

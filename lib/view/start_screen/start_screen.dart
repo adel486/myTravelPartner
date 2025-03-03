@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_travel_partner/utils/constants/color_constants.dart';
 import 'package:my_travel_partner/view/login_screen/login_screen.dart';
 import 'package:my_travel_partner/view/sign_up_screen/sign_up_screen.dart';
 
@@ -31,7 +32,7 @@ class _StartscreenState extends State<Startscreen> {
                 style: GoogleFonts.raleway(
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black),
+                    color: ColorConstants.mainblack),
               ),
               SizedBox(height: 5),
               Text(
@@ -58,7 +59,7 @@ class _StartscreenState extends State<Startscreen> {
                   'LOGIN',
                   style: GoogleFonts.poppins(
                       textStyle: Theme.of(context).textTheme.headlineLarge,
-                      color: Colors.white,
+                      color: ColorConstants.mainwhite,
                       fontSize: 25,
                       letterSpacing: 0.6),
                 ),
@@ -73,7 +74,8 @@ class _StartscreenState extends State<Startscreen> {
                           childBuilder: (context) => SignUpScreen()));
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black.withValues(alpha: 0.2),
+                  backgroundColor:
+                      ColorConstants.mainblack.withValues(alpha: 0.2),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   padding: EdgeInsets.symmetric(vertical: 12, horizontal: 60),
@@ -82,7 +84,7 @@ class _StartscreenState extends State<Startscreen> {
                   'SIGNUP',
                   style: GoogleFonts.poppins(
                       textStyle: Theme.of(context).textTheme.headlineLarge,
-                      color: Colors.white,
+                      color: ColorConstants.mainwhite,
                       fontSize: 25,
                       letterSpacing: 0.4),
                 ),

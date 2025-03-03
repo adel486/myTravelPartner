@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_travel_partner/utils/constants/color_constants.dart';
 import 'package:my_travel_partner/view/group_screen/group_screen.dart';
 import 'package:my_travel_partner/view/home_screen/home_screen.dart';
 import 'package:my_travel_partner/view/profile_screen/profile_screen.dart';
@@ -23,11 +24,11 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: myScreens[selectedIndex],
-      backgroundColor: Colors.white,
+      backgroundColor: ColorConstants.mainwhite,
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: selectedIndex,
-          selectedItemColor: Colors.red,
-          unselectedItemColor: Colors.red.shade200,
+          selectedItemColor: ColorConstants.primaryRed,
+          unselectedItemColor: ColorConstants.primaryRed.withValues(alpha: 0.3),
           onTap: (value) {
             selectedIndex = value;
             setState(() {});

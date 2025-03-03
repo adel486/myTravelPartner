@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_travel_partner/utils/constants/color_constants.dart';
 
 class DropdownWidget extends StatefulWidget {
   final List<String> items;
@@ -34,7 +35,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
     return Container(
       padding: EdgeInsets.only(left: 10),
       decoration: BoxDecoration(
-          color: Colors.black.withValues(alpha: 0.3),
+          color: ColorConstants.mainblack.withValues(alpha: 0.3),
           borderRadius: BorderRadius.circular(10)),
       child: DropdownButtonHideUnderline(
         child: DropdownButton2<String>(

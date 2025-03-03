@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:my_travel_partner/controller/my_trip_screen_controller.dart';
+import 'package:my_travel_partner/utils/constants/color_constants.dart';
 import 'package:provider/provider.dart';
 
 class PlanMyTripScreen extends StatefulWidget {
@@ -60,11 +61,13 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.red,
+          backgroundColor: ColorConstants.primaryRed,
           title: Text(
             "Plan My Trip",
             style: GoogleFonts.roboto(
-                fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+                fontSize: 20,
+                color: ColorConstants.mainblack,
+                fontWeight: FontWeight.bold),
           )),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
@@ -156,7 +159,7 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
         iconStyleData: const IconStyleData(
           icon: Icon(
             Icons.arrow_drop_down,
-            color: Colors.black45,
+            color: ColorConstants.mainblack,
           ),
           iconSize: 24,
         ),
@@ -198,13 +201,13 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Colors.red.shade200,
+            color: ColorConstants.primaryRed.withValues(alpha: 0.2),
           ),
           child: Center(
             child: selectedImage != null
                 ? Image.file(File(selectedImage!.path),
                     height: 100, fit: BoxFit.cover)
-                : Icon(Icons.image, size: 50, color: Colors.grey),
+                : Icon(Icons.image, size: 50, color: ColorConstants.grey),
           ),
         ),
       ),
@@ -216,7 +219,7 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
         Provider.of<MyTripScreenController>(context, listen: false);
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.red,
+        backgroundColor: ColorConstants.primaryRed,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         minimumSize: const Size(double.infinity, 50),
       ),
@@ -227,7 +230,9 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
       },
       child: Text("Submit",
           style: GoogleFonts.roboto(
-              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: ColorConstants.mainblack)),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:my_travel_partner/utils/constants/color_constants.dart';
 
 class IdProofUpload extends StatefulWidget {
   @override
@@ -12,22 +13,26 @@ class _IdProofUploadState extends State<IdProofUpload> {
   File? selectedFile;
 
   Future<void> pickDocument() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
       setState(() {
         selectedFile = File(pickedFile.path);
-        controller.text = pickedFile.path.split('/').last; // Show only file name
+        controller.text =
+            pickedFile.path.split('/').last; // Show only file name
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(width: MediaQuery.of(context).size.width,
-      height: 150,decoration: BoxDecoration(
-            color: Colors.black.withValues(alpha: 0.3),
-            borderRadius: BorderRadius.circular(10)),
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 150,
+      decoration: BoxDecoration(
+          color: ColorConstants.mainblack.withValues(alpha: 0.3),
+          borderRadius: BorderRadius.circular(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -48,7 +53,8 @@ class _IdProofUploadState extends State<IdProofUpload> {
               children: [
                 Text("Preview:"),
                 SizedBox(height: 5),
-                Image.file(selectedFile!, width: 150, height: 100, fit: BoxFit.cover),
+                Image.file(selectedFile!,
+                    width: 150, height: 100, fit: BoxFit.cover),
               ],
             ),
         ],

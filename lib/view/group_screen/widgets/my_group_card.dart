@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_travel_partner/utils/constants/color_constants.dart';
 
 class myGroupCard extends StatelessWidget {
   const myGroupCard({
@@ -16,9 +17,9 @@ class myGroupCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
       decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey.withOpacity(0.6)),
+          border: Border.all(color: ColorConstants.borderGrey),
           borderRadius: BorderRadius.circular(15),
-          color: Colors.white),
+          color: ColorConstants.mainwhite),
       child: Column(
         children: [
           Row(
@@ -29,7 +30,7 @@ class myGroupCard extends StatelessWidget {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: NetworkImage(imageUrl), fit: BoxFit.cover),
-                    color: Colors.blue,
+                    color: ColorConstants.mainwhite,
                     borderRadius: BorderRadius.circular(15)),
               ),
               Padding(
@@ -44,13 +45,13 @@ class myGroupCard extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                              color: ColorConstants.mainblack),
                         ),
                         SizedBox(width: 75),
                         Text(
                           date,
                           style: TextStyle(
-                              color: Colors.black,
+                              color: ColorConstants.mainblack,
                               fontSize: 18,
                               fontWeight: FontWeight.bold),
                         )
@@ -67,11 +68,11 @@ class myGroupCard extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Colors.red.shade400),
+                color: ColorConstants.primaryRed.withValues(alpha: 0.4)),
             child: Text(
               "Chat now",
               style: TextStyle(
-                  color: Colors.white,
+                  color: ColorConstants.mainwhite,
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
             ),

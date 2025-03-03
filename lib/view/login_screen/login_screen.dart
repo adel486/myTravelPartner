@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_travel_partner/utils/constants/color_constants.dart';
 import 'package:my_travel_partner/view/Bottom_Nav_Screen/bottom_nav_screen.dart';
 import 'package:my_travel_partner/view/sign_up_screen/sign_up_screen.dart';
 
@@ -68,9 +69,10 @@ class _LoginCardState extends State<_LoginCard> {
           width: MediaQuery.of(context).size.width * 0.8,
           padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: Colors.black.withValues(alpha: 0.2),
+            color: ColorConstants.mainblack.withValues(alpha: 0.2),
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Colors.red.withValues(alpha: 0.3)),
+            border: Border.all(
+                color: ColorConstants.primaryRed.withValues(alpha: 0.3)),
           ),
           child: Form(
             key: formKey,
@@ -83,7 +85,7 @@ class _LoginCardState extends State<_LoginCard> {
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: ColorConstants.mainblack,
                     ),
                   ),
                   SizedBox(height: 20),
@@ -91,10 +93,12 @@ class _LoginCardState extends State<_LoginCard> {
                     controller: emailController,
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: Colors.white.withValues(alpha: 0.3),
+                      fillColor:
+                          ColorConstants.mainwhite.withValues(alpha: 0.3),
                       hintText: 'Email',
-                      hintStyle: TextStyle(color: Colors.white),
-                      prefixIcon: Icon(Icons.email, color: Colors.white),
+                      hintStyle: TextStyle(color: ColorConstants.mainwhite),
+                      prefixIcon:
+                          Icon(Icons.email, color: ColorConstants.mainwhite),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide.none,
@@ -116,10 +120,15 @@ class _LoginCardState extends State<_LoginCard> {
                     obscureText: true,
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: Colors.white.withValues(alpha: 0.3),
+                      fillColor:
+                          ColorConstants.mainwhite.withValues(alpha: 0.3),
                       hintText: 'Password',
-                      hintStyle: TextStyle(color: Colors.white70),
-                      prefixIcon: Icon(Icons.lock, color: Colors.white70),
+                      hintStyle: TextStyle(
+                          color:
+                              ColorConstants.mainwhite.withValues(alpha: 0.4)),
+                      prefixIcon: Icon(Icons.lock,
+                          color:
+                              ColorConstants.mainwhite.withValues(alpha: 0.4)),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide.none,
@@ -144,25 +153,26 @@ class _LoginCardState extends State<_LoginCard> {
                       },
                       child: Text(
                         'Forgot Password?',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: ColorConstants.mainwhite),
                       ),
                     ),
                   ),
                   SizedBox(height: 20),
                   isLoading
-                      ? CircularProgressIndicator(color: Colors.white)
+                      ? CircularProgressIndicator(
+                          color: ColorConstants.mainwhite)
                       : ElevatedButton(
                           onPressed: login,
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                Colors.white.withValues(alpha: 0.3),
+                                ColorConstants.mainwhite.withValues(alpha: 0.3),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
                           child: Text(
                             'Sign In',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: ColorConstants.mainwhite),
                           ),
                         ),
                   SizedBox(height: 20),
@@ -174,23 +184,27 @@ class _LoginCardState extends State<_LoginCard> {
                               thickness: 1,
                               endIndent: 1,
                               indent: 1,
-                              color: Colors.red.withValues(alpha: 0.5))),
+                              color: ColorConstants.primaryRed
+                                  .withValues(alpha: 0.5))),
                       Text(
                         'Or',
-                        style: TextStyle(color: Colors.white, fontSize: 17),
+                        style: TextStyle(
+                            color: ColorConstants.mainwhite, fontSize: 17),
                       ),
                       Expanded(
                           child: Divider(
                               thickness: 1,
                               endIndent: 1,
                               indent: 1,
-                              color: Colors.red.withValues(alpha: 0.5))),
+                              color: ColorConstants.primaryRed
+                                  .withValues(alpha: 0.5))),
                     ],
                   ),
                   SizedBox(height: 10),
                   Text(
                     'login with',
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    style: TextStyle(
+                        color: ColorConstants.mainwhite, fontSize: 15),
                   ),
                   SizedBox(height: 10),
                   IconButton(
@@ -198,7 +212,7 @@ class _LoginCardState extends State<_LoginCard> {
                       icon: FaIcon(
                         FontAwesomeIcons.google,
                         size: 30,
-                        color: Colors.white.withValues(alpha: 0.3),
+                        color: ColorConstants.mainwhite.withValues(alpha: 0.3),
                       )),
                   SizedBox(height: 10),
                   TextButton(
@@ -211,7 +225,7 @@ class _LoginCardState extends State<_LoginCard> {
                     },
                     child: Text(
                       "Don't have an account? Sign Up",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: ColorConstants.mainwhite),
                     ),
                   ),
                 ],

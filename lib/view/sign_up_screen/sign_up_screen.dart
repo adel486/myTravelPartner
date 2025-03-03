@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_travel_partner/utils/constants/color_constants.dart';
 import 'package:my_travel_partner/view/login_screen/login_screen.dart';
 
 import 'package:page_transition/page_transition.dart';
@@ -69,9 +70,10 @@ class SigninCardState extends State<SigninCard> {
           width: MediaQuery.of(context).size.width * 0.8,
           padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: Colors.black.withValues(alpha: 0.2),
+            color: ColorConstants.mainblack.withValues(alpha: 0.2),
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Colors.red.withValues(alpha: 0.3)),
+            border: Border.all(
+                color: ColorConstants.primaryRed.withValues(alpha: 0.3)),
           ),
           child: Form(
             key: formKey,
@@ -91,10 +93,11 @@ class SigninCardState extends State<SigninCard> {
                   controller: emailController,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.white.withValues(alpha: 0.3),
+                    fillColor: ColorConstants.mainwhite.withValues(alpha: 0.3),
                     hintText: 'Name',
-                    hintStyle: TextStyle(color: Colors.white),
-                    prefixIcon: Icon(Icons.person, color: Colors.white),
+                    hintStyle: TextStyle(color: ColorConstants.mainwhite),
+                    prefixIcon:
+                        Icon(Icons.person, color: ColorConstants.mainwhite),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide.none,
@@ -112,9 +115,9 @@ class SigninCardState extends State<SigninCard> {
                   controller: emailController,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.white.withValues(alpha: 0.3),
+                    fillColor: ColorConstants.mainwhite.withValues(alpha: 0.3),
                     hintText: 'Email',
-                    hintStyle: TextStyle(color: Colors.white),
+                    hintStyle: TextStyle(color: ColorConstants.mainblack),
                     prefixIcon: Icon(Icons.email, color: Colors.white),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -137,11 +140,11 @@ class SigninCardState extends State<SigninCard> {
                   obscureText: true,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.white.withValues(alpha: 0.3),
+                    fillColor: ColorConstants.mainwhite.withValues(alpha: 0.3),
                     hintText: 'Phone Number',
-                    hintStyle: TextStyle(color: Colors.white70),
-                    prefixIcon:
-                        Icon(Icons.contacts_outlined, color: Colors.white70),
+                    hintStyle: TextStyle(color: ColorConstants.mainwhite),
+                    prefixIcon: Icon(Icons.contacts_outlined,
+                        color: ColorConstants.mainwhite),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide.none,
@@ -163,10 +166,11 @@ class SigninCardState extends State<SigninCard> {
                   obscureText: true,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.white.withValues(alpha: 0.3),
+                    fillColor: ColorConstants.mainwhite.withValues(alpha: 0.3),
                     hintText: 'Password',
-                    hintStyle: TextStyle(color: Colors.white70),
-                    prefixIcon: Icon(Icons.lock, color: Colors.white70),
+                    hintStyle: TextStyle(color: ColorConstants.mainwhite),
+                    prefixIcon:
+                        Icon(Icons.lock, color: ColorConstants.mainwhite),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide.none,
@@ -188,10 +192,11 @@ class SigninCardState extends State<SigninCard> {
                   obscureText: true,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.white.withValues(alpha: 0.3),
+                    fillColor: ColorConstants.mainwhite.withValues(alpha: 0.3),
                     hintText: 'Confirm Password',
-                    hintStyle: TextStyle(color: Colors.white70),
-                    prefixIcon: Icon(Icons.lock, color: Colors.white70),
+                    hintStyle: TextStyle(color: ColorConstants.mainwhite),
+                    prefixIcon:
+                        Icon(Icons.lock, color: ColorConstants.mainwhite),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide.none,
@@ -209,18 +214,19 @@ class SigninCardState extends State<SigninCard> {
                 ),
                 SizedBox(height: 20),
                 isLoading
-                    ? CircularProgressIndicator(color: Colors.white)
+                    ? CircularProgressIndicator(color: ColorConstants.mainwhite)
                     : ElevatedButton(
                         onPressed: login,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white.withValues(alpha: 0.3),
+                          backgroundColor:
+                              ColorConstants.mainwhite.withValues(alpha: 0.3),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
                         child: Text(
                           'Register',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: ColorConstants.mainwhite),
                         ),
                       ),
                 SizedBox(height: 20),
@@ -228,8 +234,8 @@ class SigninCardState extends State<SigninCard> {
                   children: [
                     Text(
                       'Already have an account?',
-                      style:
-                          GoogleFonts.roboto(fontSize: 15, color: Colors.white),
+                      style: GoogleFonts.roboto(
+                          fontSize: 15, color: ColorConstants.mainwhite),
                     ),
                     SizedBox(width: 5),
                     TextButton(
@@ -242,7 +248,7 @@ class SigninCardState extends State<SigninCard> {
                       },
                       child: Text(
                         'Sign Up',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: ColorConstants.mainwhite),
                       ),
                     ),
                   ],

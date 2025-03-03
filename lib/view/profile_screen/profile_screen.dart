@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_travel_partner/utils/constants/color_constants.dart';
 import 'package:my_travel_partner/view/My_trip_screen/my_trip_screen.dart';
 import 'package:my_travel_partner/view/group_screen/group_screen.dart';
 import 'package:my_travel_partner/view/profile_screen/widgets/formFieldWidget.dart';
@@ -17,12 +18,12 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Profile',
             style: GoogleFonts.acme(
-                color: Colors.white,
+                color: ColorConstants.mainwhite,
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
                 letterSpacing: .6,
                 textStyle: Theme.of(context).textTheme.titleLarge)),
-        backgroundColor: Colors.red,
+        backgroundColor: ColorConstants.primaryRed,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -33,7 +34,8 @@ class ProfileScreen extends StatelessWidget {
               Center(
                 child: CircleAvatar(
                   radius: 50,
-                  backgroundColor: Colors.red.shade400,
+                  backgroundColor:
+                      ColorConstants.primaryRed.withValues(alpha: 0.4),
                   child: Icon(Icons.person, size: 50, color: Colors.white),
                 ),
               ),
@@ -144,7 +146,7 @@ class ProfileScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: ColorConstants.primaryRed,
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 60),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
@@ -153,7 +155,7 @@ class ProfileScreen extends StatelessWidget {
                   child: Text('Update',
                       style: GoogleFonts.roboto(
                           fontSize: 16,
-                          color: Colors.white,
+                          color: ColorConstants.mainwhite,
                           textStyle: Theme.of(context).textTheme.labelSmall)),
                 ),
               ),
@@ -189,7 +191,7 @@ class ProfileScreen extends StatelessWidget {
   Widget buildCard(String title, VoidCallback ontap) {
     return Card(
       elevation: 4,
-      color: Colors.red[50],
+      color: ColorConstants.mainwhite,
       child: ListTile(
         title: Text(title,
             style: GoogleFonts.roboto(fontSize: 16, color: Colors.black)),

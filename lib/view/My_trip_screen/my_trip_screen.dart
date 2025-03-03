@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_travel_partner/controller/my_trip_screen_controller.dart';
+import 'package:my_travel_partner/utils/constants/color_constants.dart';
 import 'package:my_travel_partner/view/My_trip_screen/widgets/my_trip_card.dart';
 import 'package:my_travel_partner/view/dummyDb.dart';
 import 'package:my_travel_partner/view/plan_my_trip_screen/plan_my_trip_screen.dart';
@@ -29,7 +30,9 @@ class _MyTripScreenState extends State<MyTripScreen> {
         title: Text(
           "My trip screen",
           style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24),
+              color: ColorConstants.mainblack,
+              fontWeight: FontWeight.bold,
+              fontSize: 24),
         ),
       ),
       body: Padding(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_travel_partner/utils/constants/color_constants.dart';
 
 class SosScreen extends StatefulWidget {
   const SosScreen({super.key});
@@ -43,11 +44,13 @@ class _SosScreenState extends State<SosScreen>
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Colors.red,
+          backgroundColor: ColorConstants.primaryRed,
           title: Text(
             "SoS",
             style: GoogleFonts.roboto(
-                color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                color: ColorConstants.mainwhite,
+                fontSize: 24,
+                fontWeight: FontWeight.bold),
           ),
         ),
         body: Padding(
@@ -60,7 +63,7 @@ class _SosScreenState extends State<SosScreen>
                   child: ElevatedButton(
                     onPressed: _onSosPressed,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
+                      backgroundColor: ColorConstants.primaryRed,
                       shape: CircleBorder(),
                       padding: EdgeInsets.all(50),
                       elevation: 10,
@@ -70,7 +73,7 @@ class _SosScreenState extends State<SosScreen>
                       style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                          color: ColorConstants.mainwhite),
                     ),
                   ),
                 ),
@@ -81,12 +84,12 @@ class _SosScreenState extends State<SosScreen>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  _quickActionButton(ColorConstants.blue, Icons.local_hospital,
+                      "Medical help"),
                   _quickActionButton(
-                      Colors.blue, Icons.local_hospital, "Medical help"),
+                      ColorConstants.indigo, Icons.local_police, "Poloice"),
                   _quickActionButton(
-                      Colors.indigo, Icons.local_police, "Poloice"),
-                  _quickActionButton(
-                      Colors.green, Icons.support_agent, "Assistance"),
+                      ColorConstants.green, Icons.support_agent, "Assistance"),
                 ],
               )
             ],
@@ -100,10 +103,11 @@ Widget _emergencyContactButton() {
     padding: const EdgeInsets.all(8.0),
     child: ElevatedButton.icon(
       onPressed: () {},
-      icon: Icon(Icons.call, color: Colors.white),
-      label: Text("Call Emergency", style: TextStyle(color: Colors.white)),
+      icon: Icon(Icons.call, color: ColorConstants.mainwhite),
+      label: Text("Call Emergency",
+          style: TextStyle(color: ColorConstants.mainwhite)),
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.red,
+        backgroundColor: ColorConstants.primaryRed,
         minimumSize: Size(double.infinity, 50),
       ),
     ),
@@ -116,7 +120,7 @@ Widget _quickActionButton(Color color, IconData icon, String label) {
       FloatingActionButton(
         backgroundColor: color,
         onPressed: () {}, // Implement corresponding action
-        child: Icon(icon, size: 28, color: Colors.white),
+        child: Icon(icon, size: 28, color: ColorConstants.mainwhite),
       ),
       SizedBox(height: 8),
       Text(label, style: TextStyle(fontSize: 14)),
