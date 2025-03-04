@@ -68,7 +68,7 @@ class myGroupCard extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: ColorConstants.primaryRed.withValues(alpha: 0.4)),
+                color: ColorConstants.primaryRed.withValues(alpha: 0.8)),
             child: Text(
               "Chat now",
               style: TextStyle(

@@ -35,7 +35,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
     return Container(
       padding: EdgeInsets.only(left: 10),
       decoration: BoxDecoration(
-          color: ColorConstants.mainblack.withValues(alpha: 0.3),
+          color: ColorConstants.grey.withValues(alpha: 0.4),
           borderRadius: BorderRadius.circular(10)),
       child: DropdownButtonHideUnderline(
         child: DropdownButton2<String>(

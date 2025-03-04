@@ -13,14 +13,14 @@ class Formfieldwidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(left: 10),
       decoration: BoxDecoration(
-          color: ColorConstants.mainblack.withValues(alpha: 0.4),
+          color: ColorConstants.grey.withValues(alpha: 0.3),
           borderRadius: BorderRadius.circular(10)),
       child: TextFormField(
         keyboardType: textInputType,
         decoration: InputDecoration(
             hintText: hintname,
             hintStyle: GoogleFonts.roboto(
-                fontSize: 17, color: ColorConstants.mainwhite),
+                fontSize: 17, color: ColorConstants.mainblack),
             border: InputBorder.none),
         style:
             GoogleFonts.roboto(fontSize: 17, color: ColorConstants.mainwhite),

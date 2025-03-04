@@ -31,7 +31,7 @@ class _IdProofUploadState extends State<IdProofUpload> {
       width: MediaQuery.of(context).size.width,
       height: 150,
       decoration: BoxDecoration(
-          color: ColorConstants.mainblack.withValues(alpha: 0.3),
+          color: ColorConstants.grey.withValues(alpha: 0.4),
           borderRadius: BorderRadius.circular(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
