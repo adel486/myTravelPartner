@@ -1,11 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_travel_partner/controller/login_screen_controller.dart';
 import 'package:my_travel_partner/utils/constants/color_constants.dart';
-import 'package:my_travel_partner/view/Bottom_Nav_Screen/bottom_nav_screen.dart';
 import 'package:my_travel_partner/view/sign_up_screen/sign_up_screen.dart';
 
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -39,28 +40,30 @@ class _LoginCardState extends State<_LoginCard> {
   bool rememberMe = false;
   bool isLoading = false;
 
-  void login() async {
-    if (formKey.currentState!.validate()) {
-      setState(() {
-        isLoading = true;
-      });
+  // void login() async {
+  //   if (formKey.currentState!.validate()) {
+  //     setState(() {
+  //       isLoading = true;
+  //     });
 
-      await Future.delayed(Duration(seconds: 2));
+  //     await Future.delayed(Duration(seconds: 2));
 
-      setState(() {
-        isLoading = false;
-      });
+  //     setState(() {
+  //       isLoading = false;
+  //     });
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login Successful!')),
-      );
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => BottomNavScreen()));
-    }
-  }
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(content: Text('Login Successful!')),
+  //     );
+  //     Navigator.pushReplacement(
+  //         context, MaterialPageRoute(builder: (context) => BottomNavScreen()));
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final loginProvider = Provider.of<LoginScreenController>(context);
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: BackdropFilter(
@@ -158,11 +161,15 @@ class _LoginCardState extends State<_LoginCard> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  isLoading
-                      ? CircularProgressIndicator(
-                          color: ColorConstants.mainwhite)
+                  loginProvider.isLoading
+                      ? CircularProgressIndicator()
                       : ElevatedButton(
-                          onPressed: login,
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              loginProvider.login(emailController.text,
+                                  passwordController.text, context);
+                            }
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
                                 ColorConstants.mainwhite.withValues(alpha: 0.3),

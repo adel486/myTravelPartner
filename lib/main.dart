@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_travel_partner/controller/group_screen_controller.dart';
 import 'package:my_travel_partner/controller/home_screen_controller.dart';
+import 'package:my_travel_partner/controller/login_screen_controller.dart';
 import 'package:my_travel_partner/controller/my_trip_screen_controller.dart';
 import 'package:my_travel_partner/view/login_screen/login_screen.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => MyTripScreenController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => LoginScreenController(),
         )
       ],
       child: MaterialApp(
