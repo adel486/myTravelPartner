@@ -1,40 +1,39 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:my_travel_partner/view/home_screen/home_screen.dart';
+import 'package:my_travel_partner/model/login_res_model.dart';
+import 'package:my_travel_partner/view/Bottom_Nav_Screen/bottom_nav_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreenController with ChangeNotifier {
-  final String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzNzQyOTE2LCJpYXQiOjE3NDExNTA5MTYsImp0aSI6IjliNDdhOWE2YmQwMjQ0NzQ4NGY4ZWFkYjFjYTYzNjkxIiwidXNlcl9pZCI6MzUzLCJpZCI6MzUzLCJuYW1lIjoiQWRlbCBhYmR1bGxhIiwicGxhY2UiOiJUaHJpc3N1ciIsImVtYWlsIjoiYWRlbGFiZHVsbGFAZ21haWwuY29tIn0.M7tYP_wDXxmwzQ8-3CcHo-GoRyywKskKL0VE3AW6dAs";
   bool isLoading = false;
   login(String email, String password, BuildContext context) async {
+    // Url setUp
     final url = Uri.parse('https://freeapi.luminartechnohub.com/login');
     isLoading = true;
     notifyListeners();
 
     try {
-      final response = await http.post(url,
-          body: jsonEncode(
-            {"email": email, "password": password},
-          ),
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer $token"
-          });
+      // Making api call
+      final response = await http.post(
+        url,
+        body: {"email": email, "password": password},
+      );
 
       if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        String token = data['access'];
+        // Convert data
+        LoginResModel loginModel = loginResModelFromJson(response.body);
 
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString('jwt_token', token);
+        // Token store
+        if (loginModel.access != null && loginModel.access!.isNotEmpty) {
+          final SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString('access', loginModel.access.toString());
+          await prefs.setString('refresh', loginModel.refresh.toString());
+        }
 
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => HomeScreen(),
+              builder: (context) => BottomNavScreen(),
             ));
       } else {
         ScaffoldMessenger.of(context)

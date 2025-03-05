@@ -62,8 +62,6 @@ class _LoginCardState extends State<_LoginCard> {
 
   @override
   Widget build(BuildContext context) {
-    final loginProvider = Provider.of<LoginScreenController>(context);
-
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: BackdropFilter(
@@ -161,13 +159,15 @@ class _LoginCardState extends State<_LoginCard> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  loginProvider.isLoading
+                  context.watch<LoginScreenController>().isLoading
                       ? CircularProgressIndicator()
                       : ElevatedButton(
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              loginProvider.login(emailController.text,
-                                  passwordController.text, context);
+                              context.read<LoginScreenController>().login(
+                                  emailController.text,
+                                  passwordController.text,
+                                  context);
                             }
                           },
                           style: ElevatedButton.styleFrom(
