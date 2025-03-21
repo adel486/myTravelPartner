@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_travel_partner/controller/login_screen_controller.dart';
 import 'package:my_travel_partner/utils/constants/color_constants.dart';
+import 'package:my_travel_partner/view/Bottom_Nav_Screen/bottom_nav_screen.dart';
 import 'package:my_travel_partner/view/sign_up_screen/sign_up_screen.dart';
 
 import 'package:page_transition/page_transition.dart';
@@ -37,28 +38,6 @@ class _LoginCardState extends State<_LoginCard> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  bool rememberMe = false;
-  bool isLoading = false;
-
-  // void login() async {
-  //   if (formKey.currentState!.validate()) {
-  //     setState(() {
-  //       isLoading = true;
-  //     });
-
-  //     await Future.delayed(Duration(seconds: 2));
-
-  //     setState(() {
-  //       isLoading = false;
-  //     });
-
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       SnackBar(content: Text('Login Successful!')),
-  //     );
-  //     Navigator.pushReplacement(
-  //         context, MaterialPageRoute(builder: (context) => BottomNavScreen()));
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -159,29 +138,48 @@ class _LoginCardState extends State<_LoginCard> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  context.watch<LoginScreenController>().isLoading
-                      ? CircularProgressIndicator()
-                      : ElevatedButton(
-                          onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              context.read<LoginScreenController>().login(
-                                  emailController.text,
-                                  passwordController.text,
-                                  context);
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                ColorConstants.mainwhite.withValues(alpha: 0.3),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                  ElevatedButton(
+                    onPressed: () async {
+                      if (formKey.currentState!.validate()) {
+                        bool? s = await context
+                            .read<LoginScreenController>()
+                            .login(
+                                email: emailController.text,
+                                password: passwordController.text);
+                        if (s == true) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Login successful"),
+                              backgroundColor: Colors.green,
                             ),
-                          ),
-                          child: Text(
-                            'Sign In',
-                            style: TextStyle(color: ColorConstants.mainwhite),
-                          ),
-                        ),
+                          );
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => BottomNavScreen(),
+                              ));
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Login failed"),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        }
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          ColorConstants.mainwhite.withValues(alpha: 0.3),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Text(
+                      'Sign In',
+                      style: TextStyle(color: ColorConstants.mainwhite),
+                    ),
+                  ),
                   SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

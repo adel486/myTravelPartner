@@ -1,10 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_travel_partner/controller/sign_up_screen_controller.dart';
 import 'package:my_travel_partner/utils/constants/color_constants.dart';
 import 'package:my_travel_partner/view/login_screen/login_screen.dart';
 
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatelessWidget {
   @override
@@ -38,27 +40,27 @@ class SigninCardState extends State<SigninCard> {
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
   final cpasswordController = TextEditingController();
-  bool rememberMe = false;
-  bool isLoading = false;
+  // bool rememberMe = false;
+  // bool isLoading = false;
 
-  void login() async {
-    if (formKey.currentState!.validate()) {
-      setState(() {
-        isLoading = true;
-      });
+  // void login() async {
+  //   if (formKey.currentState!.validate()) {
+  //     setState(() {
+  //       isLoading = true;
+  //     });
 
-      // Simulate a network call
-      await Future.delayed(Duration(seconds: 2));
+  //     // Simulate a network call
+  //     await Future.delayed(Duration(seconds: 2));
 
-      setState(() {
-        isLoading = false;
-      });
+  //     setState(() {
+  //       isLoading = false;
+  //     });
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login Successful!')),
-      );
-    }
-  }
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(content: Text('Login Successful!')),
+  //     );
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +92,7 @@ class SigninCardState extends State<SigninCard> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  controller: emailController,
+                  controller: nameController,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: ColorConstants.mainwhite.withValues(alpha: 0.3),
@@ -213,22 +215,98 @@ class SigninCardState extends State<SigninCard> {
                   },
                 ),
                 SizedBox(height: 20),
-                isLoading
-                    ? CircularProgressIndicator(color: ColorConstants.mainwhite)
-                    : ElevatedButton(
-                        onPressed: login,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              ColorConstants.mainwhite.withValues(alpha: 0.3),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                ElevatedButton(
+                  onPressed: () async {
+                    if (formKey.currentState!.validate()) {
+                      bool? status = await context
+                          .read<SignUpScreenController>()
+                          .register(
+                              email: emailController.text,
+                              name: nameController.text,
+                              passWord: passwordController.text,
+                              phone: phoneController.text);
+                      ScaffoldMessenger.of(context).clearSnackBars();
+                      if (status == true) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(
+                            "Registration Successfull",
                           ),
-                        ),
-                        child: Text(
-                          'Register',
-                          style: TextStyle(color: ColorConstants.mainwhite),
-                        ),
-                      ),
+                          backgroundColor: Colors.green,
+                        ));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginScreen(),
+                            ));
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(
+                            "Registration failed",
+                          ),
+                          backgroundColor: Colors.red,
+                        ));
+                      }
+                    }
+                  },
+                  //     () async {
+                  //   if (formKey.currentState!.validate()) {
+                  //     try {
+                  //       bool? status = await context
+                  //           .read<SignUpScreenController>()
+                  //           .register(
+                  //             email: emailController.text.trim(),
+                  //             name: nameController.text.trim(),
+                  //             password: passwordController.text.trim(),
+                  //             phone: phoneController.text.trim(),
+                  //           );
+
+                  //       ScaffoldMessenger.of(context).clearSnackBars();
+
+                  //       if (status == true) {
+                  //         ScaffoldMessenger.of(context).showSnackBar(
+                  //           SnackBar(
+                  //             content: Text("Registration Successful"),
+                  //             backgroundColor: Colors.green,
+                  //           ),
+                  //         );
+
+                  //         Navigator.pushReplacement(
+                  //           context,
+                  //           MaterialPageRoute(
+                  //             builder: (context) => LoginScreen(),
+                  //           ),
+                  //         );
+                  //       } else {
+                  //         ScaffoldMessenger.of(context).showSnackBar(
+                  //           SnackBar(
+                  //             content: Text(
+                  //                 "Registration failed. Please try again."),
+                  //             backgroundColor: Colors.red,
+                  //           ),
+                  //         );
+                  //       }
+                  //     } catch (e) {
+                  //       ScaffoldMessenger.of(context).showSnackBar(
+                  //         SnackBar(
+                  //           content: Text("An error occurred: ${e.toString()}"),
+                  //           backgroundColor: Colors.red,
+                  //         ),
+                  //       );
+                  //     }
+                  //   }
+                  // },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        ColorConstants.mainwhite.withValues(alpha: 0.3),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Text(
+                    'Register',
+                    style: TextStyle(color: ColorConstants.mainwhite),
+                  ),
+                ),
                 SizedBox(height: 20),
                 Row(
                   children: [

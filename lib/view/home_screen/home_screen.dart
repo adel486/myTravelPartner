@@ -39,21 +39,16 @@ class _HomeScreenState extends State<HomeScreen> {
               CarouselSlider(
                 items: List.generate(
                   Dummydb.carouselImages.length,
-                  (index) => Container(
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                    clipBehavior: Clip.antiAlias,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: CachedNetworkImage(
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        imageUrl: Dummydb.carouselImages[index],
-                        placeholder: (context, url) => Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                        errorWidget: (context, url, error) => SizedBox(),
+                  (index) => ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      imageUrl: Dummydb.carouselImages[index],
+                      placeholder: (context, url) => Center(
+                        child: CircularProgressIndicator(),
                       ),
+                      errorWidget: (context, url, error) => SizedBox(),
                     ),
                   ),
                 ),

@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:my_travel_partner/controller/my_trip_screen_controller.dart';
+import 'package:intl/intl.dart';
+import 'package:my_travel_partner/controller/login_screen_controller.dart';
+import 'package:my_travel_partner/controller/plan_my_trip_screen_controller.dart';
 import 'package:my_travel_partner/utils/constants/color_constants.dart';
+import 'package:my_travel_partner/view/Bottom_Nav_Screen/bottom_nav_screen.dart';
 import 'package:provider/provider.dart';
 
 class PlanMyTripScreen extends StatefulWidget {
@@ -17,34 +20,19 @@ class PlanMyTripScreen extends StatefulWidget {
 
 class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
   final List<String> travelTypes = ["Bike", "Car", "Bus", "Train"];
+  String? selectedTravelType;
   String? selectedValue;
   DateTime selectedDate = DateTime.now();
-  XFile? selectedImage;
+  File? selectedImage;
 
   // Controllers
   final TextEditingController tripNameController = TextEditingController();
-  final TextEditingController placeNameController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
   final TextEditingController desController = TextEditingController();
   final TextEditingController groupSizeController = TextEditingController();
   final TextEditingController budgetController = TextEditingController();
-  final TextEditingController dateController = TextEditingController();
-
-  Future<void> _selectDate(BuildContext context) async {
-    DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: selectedDate,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
-    );
-
-    if (pickedDate != null && pickedDate != selectedDate) {
-      setState(() {
-        selectedDate = pickedDate;
-        dateController.text =
-            "${pickedDate.day}-${pickedDate.month}-${pickedDate.year}";
-      });
-    }
-  }
+  final TextEditingController FromdateController = TextEditingController();
+  final TextEditingController to_dateController = TextEditingController();
 
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
@@ -52,7 +40,27 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
 
     if (image != null) {
       setState(() {
-        selectedImage = image;
+        selectedImage = File(image.path);
+      });
+    }
+  }
+
+  DateTime? fromDate;
+  DateTime? toDate;
+
+  Future<void> _selectDate(
+      BuildContext context, TextEditingController controller) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+
+    if (pickedDate != null) {
+      setState(() {
+        controller.text = DateFormat('yyyy-MM-dd')
+            .format(pickedDate); // Ensuring correct format
       });
     }
   }
@@ -72,21 +80,27 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              _buildTextField(tripNameController, "Enter trip name"),
-              _buildTextField(placeNameController, "Enter location"),
-              _buildTextField(desController, "Trip description", maxLines: 6),
-              _buildDropdown(),
-              _buildTextField(groupSizeController, "Preferred group size",
-                  keyboardType: TextInputType.number),
-              _buildTextField(budgetController, "Enter your budget",
-                  keyboardType: TextInputType.number),
-              _buildDateField(),
-              _buildImagePicker(),
-              const SizedBox(height: 20),
-              _buildSubmitButton(),
-            ],
+          child: Consumer<PlanMyTripScreenController>(
+            builder: (context, value, child) {
+              return Column(
+                children: [
+                  _buildTextField(tripNameController, "Enter trip name"),
+                  _buildTextField(locationController, "Enter location"),
+                  _buildTextField(desController, "Trip description",
+                      maxLines: 6),
+                  _buildDropdown(),
+                  _buildTextField(groupSizeController, "Preferred group size",
+                      keyboardType: TextInputType.number),
+                  _buildTextField(budgetController, "Enter your budget",
+                      keyboardType: TextInputType.number),
+                  _buildDateField("Select From Date", FromdateController, true),
+                  _buildDateField("Select To Date", to_dateController, false),
+                  _buildImagePicker(),
+                  const SizedBox(height: 20),
+                  _buildSubmitButton(),
+                ],
+              );
+            },
           ),
         ),
       ),
@@ -116,6 +130,7 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: DropdownButtonFormField2<String>(
+        value: selectedTravelType,
         isExpanded: true,
         decoration: InputDecoration(
           // Add Horizontal padding using menuItemStyleData.padding so it matches
@@ -148,7 +163,11 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
           return null;
         },
         onChanged: (value) {
-          //Do something when selected item is changed.
+          print("selected:::::::::::::::::::$value");
+          setState(() {
+            selectedTravelType = value;
+          });
+          print(selectedTravelType);
         },
         onSaved: (value) {
           selectedValue = value.toString();
@@ -175,18 +194,19 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
     );
   }
 
-  Widget _buildDateField() {
+  Widget _buildDateField(
+      String hint, TextEditingController controller, bool isFromDate) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: TextField(
-        controller: dateController,
+        controller: controller,
         readOnly: true,
         decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.calendar_month),
-          hintText: "Select Date",
+          prefixIcon: Icon(Icons.calendar_month),
+          hintText: hint,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
         ),
-        onTap: () => _selectDate(context),
+        onTap: () => _selectDate(context, controller),
       ),
     );
   }
@@ -197,7 +217,7 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
       child: GestureDetector(
         onTap: _pickImage,
         child: Container(
-          height: 120,
+          height: 160,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
@@ -205,8 +225,13 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
           ),
           child: Center(
             child: selectedImage != null
-                ? Image.file(File(selectedImage!.path),
-                    height: 100, fit: BoxFit.cover)
+                ? ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.file(File(selectedImage!.path),
+                        height: 160,
+                        width: double.infinity,
+                        fit: BoxFit.fitWidth),
+                  )
                 : Icon(Icons.image, size: 50, color: ColorConstants.grey),
           ),
         ),
@@ -215,18 +240,70 @@ class _PlanMyTripScreenState extends State<PlanMyTripScreen> {
   }
 
   Widget _buildSubmitButton() {
-    final tripProvider =
-        Provider.of<MyTripScreenController>(context, listen: false);
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: ColorConstants.primaryRed,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         minimumSize: const Size(double.infinity, 50),
       ),
-      onPressed: () {
-        tripProvider.addMyTrip(placeNameController.text,
-            tripNameController.text, dateController.text);
-        Navigator.pop(context);
+      onPressed: () async {
+        String? accessToken =
+            await context.read<LoginScreenController>().getToken();
+
+        print({
+          "tripName": tripNameController.text,
+          "tripLocation": locationController.text,
+          "tripDescription": desController.text,
+          "travelType": selectedTravelType ?? "Bus",
+          "preferredGroupSize": groupSizeController.text,
+          "budget": budgetController.text,
+          "fromDate": FromdateController.text,
+          "toDate": to_dateController.text,
+          "accessToken": accessToken,
+          "image": selectedImage
+        });
+        print("Uploading image: ${selectedImage?.path}");
+
+        // Handle the case where accessToken is null
+        if (accessToken == null || accessToken.isEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+                content: Text("Authentication Error! Please log in again.")),
+          );
+          return;
+        }
+
+        bool success = await context
+            .read<PlanMyTripScreenController>()
+            .uploadTrip(
+                tripName: tripNameController.text,
+                tripLocation: locationController.text,
+                tripDescription: desController.text,
+                travelType:
+                    selectedTravelType ?? 'Unknown', // Prevent null error
+                preferredGroupSize: groupSizeController.text,
+                budget: budgetController.text,
+                Fromdate: FromdateController.text,
+                to_date: to_dateController.text,
+                accessToken: accessToken,
+                locationImage:
+                    File(selectedImage!.path) // No more force unwrapping
+                );
+
+        if (success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Trip uploaded successfully")),
+          );
+
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => BottomNavScreen()),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Failed to upload trip!")),
+          );
+        }
       },
       child: Text("Submit",
           style: GoogleFonts.roboto(
