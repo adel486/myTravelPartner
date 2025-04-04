@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:my_travel_partner/utils/constants/color_constants.dart';
 
@@ -7,10 +8,12 @@ class myTripCard extends StatelessWidget {
     required this.placeName,
     required this.tripName,
     required this.date,
+    required this.imageurl,
   });
   final String tripName;
   final String placeName;
   final String date;
+  final String imageurl;
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +27,15 @@ class myTripCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              Container(
-                height: 120,
+              CachedNetworkImage(
+                fit: BoxFit.cover,
                 width: 120,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(
-                            "https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?auto=compress&cs=tinysrgb&w=600")),
-                    color: ColorConstants.mainwhite),
+                height: 120,
+                imageUrl: imageurl,
+                placeholder: (context, url) => Center(
+                  child: CircularProgressIndicator(),
+                ),
+                errorWidget: (context, url, error) => SizedBox(),
               ),
               SizedBox(width: 15),
               Column(

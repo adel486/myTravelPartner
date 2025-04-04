@@ -118,7 +118,7 @@ class _LoginCardState extends State<_LoginCard> {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
                       }
-                      if (value.length < 6) {
+                      if (value.length < 4) {
                         return 'Password must be at least 6 characters';
                       }
                       return null;
@@ -147,6 +147,10 @@ class _LoginCardState extends State<_LoginCard> {
                                 email: emailController.text,
                                 password: passwordController.text);
                         if (s == true) {
+                          String email = emailController.text;
+                          await context
+                              .read<LoginScreenController>()
+                              .setEmail(email);
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text("Login successful"),

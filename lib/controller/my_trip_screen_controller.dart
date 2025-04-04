@@ -12,14 +12,13 @@ class MyTripScreenController with ChangeNotifier {
 
   // Fetch trips from API
   List<Data>? trips = []; // Initialize as empty list
-  
 
   final ApiServices apiService = ApiServices();
 
-  Future<void> getTrips() async {
+  Future<void> getMyTrip() async {
     SmartDialog.showLoading();
     try {
-      trips = await apiService.fetchTrips();
+      trips = await apiService.fetchMyTrip();
       notifyListeners(); // Notify UI to rebuild
     } catch (e) {
       print("Error fetching trips: $e");

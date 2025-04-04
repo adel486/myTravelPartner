@@ -20,7 +20,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
     items1 = widget.items;
   }
 
-  String? selectedValue;
+  String? selectedTravelType;
 
   final TextEditingController textEditingController = TextEditingController();
 
@@ -59,10 +59,10 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                     ),
                   ))
               .toList(),
-          value: selectedValue,
+          value: selectedTravelType,
           onChanged: (value) {
             setState(() {
-              selectedValue = value;
+              selectedTravelType = value;
             });
           },
           buttonStyleData: const ButtonStyleData(

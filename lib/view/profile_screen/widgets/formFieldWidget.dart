@@ -5,8 +5,15 @@ import 'package:my_travel_partner/utils/constants/color_constants.dart';
 class Formfieldwidget extends StatelessWidget {
   final TextInputType textInputType;
   final String hintname;
+  final TextEditingController controller;
+  final bool isEmailField;
+
   const Formfieldwidget(
-      {super.key, required this.textInputType, required this.hintname});
+      {super.key,
+      required this.textInputType,
+      required this.hintname,
+      required this.controller,
+      this.isEmailField = false});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +23,8 @@ class Formfieldwidget extends StatelessWidget {
           color: ColorConstants.grey.withValues(alpha: 0.3),
           borderRadius: BorderRadius.circular(10)),
       child: TextFormField(
+        controller: controller,
+        readOnly: isEmailField,
         keyboardType: textInputType,
         decoration: InputDecoration(
             hintText: hintname,
@@ -23,7 +32,7 @@ class Formfieldwidget extends StatelessWidget {
                 fontSize: 17, color: ColorConstants.mainblack),
             border: InputBorder.none),
         style:
-            GoogleFonts.roboto(fontSize: 17, color: ColorConstants.mainwhite),
+            GoogleFonts.roboto(fontSize: 17, color: ColorConstants.mainblack),
       ),
     );
   }

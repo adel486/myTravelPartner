@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:my_travel_partner/model/mytrips/Data.dart';
+import 'package:my_travel_partner/services/api_services.dart';
 import 'package:my_travel_partner/view/dummyDb.dart';
 
 class HomeScreenController with ChangeNotifier {
@@ -40,7 +43,8 @@ class HomeScreenController with ChangeNotifier {
     required String imageUrl,
     required String tripName,
     required String seats,
-    required String date,
+    required String fromDate,
+    required String toDate,
   }) {
     // Check if the trip already exists in the list
     int index = Dummydb.UpcomingTripList.indexWhere(
@@ -55,7 +59,8 @@ class HomeScreenController with ChangeNotifier {
         "imageUrl": imageUrl,
         "tripName": tripName,
         "seats": seats,
-        "date": date,
+        "fromDate": fromDate,
+        "toDate": toDate
       });
     }
 
@@ -80,5 +85,23 @@ class HomeScreenController with ChangeNotifier {
       }
     }
     notifyListeners(); // Notify UI to update
+  }
+
+  // Fetch trips from API
+  List<Data>? allTrips = []; // Initialize as empty list
+
+  final ApiServices apiService = ApiServices();
+
+  Future<void> getAllTrips() async {
+    SmartDialog.showLoading();
+    try {
+      allTrips = await apiService.fetchUpComingTrips();
+      notifyListeners(); // Notify UI to rebuild
+    } catch (e) {
+      print("Error fetching trips: $e");
+    } finally {
+      SmartDialog.dismiss();
+      notifyListeners();
+    }
   }
 }

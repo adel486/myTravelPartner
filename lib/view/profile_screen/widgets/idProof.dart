@@ -10,54 +10,44 @@ class IdProofUpload extends StatefulWidget {
 
 class _IdProofUploadState extends State<IdProofUpload> {
   TextEditingController controller = TextEditingController();
-  File? selectedFile;
+  File? selectedIdProofImage;
 
-  Future<void> pickDocument() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+  Future<void> _pickIdProofImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
-    if (pickedFile != null) {
+    if (image != null) {
       setState(() {
-        selectedFile = File(pickedFile.path);
-        controller.text =
-            pickedFile.path.split('/').last; // Show only file name
+        selectedIdProofImage = File(image.path);
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 150,
-      decoration: BoxDecoration(
-          color: ColorConstants.grey.withValues(alpha: 0.4),
-          borderRadius: BorderRadius.circular(10)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextFormField(
-            controller: controller,
-            readOnly: true,
-            decoration: InputDecoration(
-              labelText: "Upload ID Proof (Aadhaar, License)",
-              suffixIcon: IconButton(
-                icon: Icon(Icons.upload_file),
-                onPressed: pickDocument,
-              ),
-            ),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: GestureDetector(
+        onTap: _pickIdProofImage,
+        child: Container(
+          height: 160,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: ColorConstants.primaryRed.withValues(alpha: 0.2),
           ),
-          SizedBox(height: 10),
-          if (selectedFile != null) // Show preview if file is selected
-            Column(
-              children: [
-                Text("Preview:"),
-                SizedBox(height: 5),
-                Image.file(selectedFile!,
-                    width: 150, height: 100, fit: BoxFit.cover),
-              ],
-            ),
-        ],
+          child: Center(
+            child: selectedIdProofImage != null
+                ? ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.file(File(selectedIdProofImage!.path),
+                        height: 160,
+                        width: double.infinity,
+                        fit: BoxFit.fitWidth),
+                  )
+                : Icon(Icons.image, size: 50, color: ColorConstants.grey),
+          ),
+        ),
       ),
     );
   }
